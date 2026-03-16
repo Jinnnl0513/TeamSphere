@@ -1,0 +1,153 @@
+@import "tailwindcss";
+@import "highlight.js/styles/github-dark.css";
+
+@theme {
+  --color-discord-gray-900: #141517;
+  /* Sidebar BG Dark (from our new auth aesthetic!) */
+  --color-discord-gray-800: #1e1f22;
+  /* Secondary BG Dark */
+  --color-discord-gray-700: #252525;
+  /* Main Chat BG Dark */
+  --color-discord-gray-600: #2b2d31;
+  /* Input BG Dark */
+  --color-discord-gray-500: #80848e;
+  /* Muted texts */
+  --color-discord-gray-400: #949ba4;
+  /* Minor texts */
+  --color-discord-gray-300: #f5f5f5;
+  /* Standard texts */
+  --color-discord-blurple-500: #6c5dd3;
+  /* Brand Color - Cool Purple */
+  --color-discord-blurple-600: #5b4eb3;
+  /* Brand Color Hover */
+  --color-discord-red-400: #ff8787;
+  /* Danger Light */
+  --color-discord-red-500: #ff6b6b;
+  /* Danger - Vibrant */
+  --color-discord-red-600: #ff5252;
+  /* Danger Hover */
+  --color-discord-green-500: #20c997;
+  /* Success - Teal/Vibrant */
+}
+
+@layer base {
+  :root {
+    /* Light Mode Default (Modern, bright, clean) */
+    --bg-main: #ffffff;
+    --bg-secondary: #f5f3f0;
+    --bg-sidebar: #e9e7e4;
+    --bg-hover: #f1ede8;
+    --bg-input: #f5f3f0;
+
+    --text-main: #1a1a1a;
+    --text-muted: #6b7280;
+
+    --accent: #6c5dd3;
+    /* Purple */
+    --accent-hover: #5b4eb3;
+
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
+
+  /* Built-in Dark Mode using prefers-color-scheme */
+  @media (prefers-color-scheme: dark) {
+    :root:not(.theme-light) {
+      --bg-main: #1e1f22;
+      --bg-secondary: #252525;
+      --bg-sidebar: #141517;
+      --bg-hover: #2b2d31;
+      --bg-input: rgba(255, 255, 255, 0.05);
+
+      --text-main: #f5f5f5;
+      --text-muted: #949ba4;
+
+      --accent: #6c5dd3;
+      --accent-hover: #8375e6;
+    }
+  }
+
+  /* Force dark theme class (overrides system preference) */
+  :root.theme-dark {
+    --bg-main: #1e1f22;
+    --bg-secondary: #252525;
+    --bg-sidebar: #141517;
+    --bg-hover: #2b2d31;
+    --bg-input: rgba(255, 255, 255, 0.05);
+
+    --text-main: #f5f5f5;
+    --text-muted: #949ba4;
+
+    --accent: #6c5dd3;
+    --accent-hover: #8375e6;
+  }
+
+  /* Force light theme class (overrides system preference) */
+  :root.theme-light {
+    --bg-main: #ffffff;
+    --bg-secondary: #f5f3f0;
+    --bg-sidebar: #e9e7e4;
+    --bg-hover: #f1ede8;
+    --bg-input: #f5f3f0;
+
+    --text-main: #1a1a1a;
+    --text-muted: #6b7280;
+
+    --accent: #6c5dd3;
+    --accent-hover: #5b4eb3;
+  }
+
+  body {
+    @apply m-0 p-0 antialiased h-screen overflow-hidden text-[15px] font-sans transition-colors duration-300;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Beautiful custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--bg-sidebar);
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+  }
+}
+
+/* PicMo custom popup styling */
+.custom-picmo-popup {
+  border: 1px solid var(--bg-secondary) !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+  z-index: 9999 !important; /* ensure it stays above other floating elements */
+  background: var(--bg-sidebar); /* ensuring default background */
+}
+
+/* Optional: hide native focus outline from interior elements */
+.custom-picmo-popup .picmo__picker {
+  border: none !important;
+}
+
+.custom-picmo-popup * {
+  outline: none !important;
+}

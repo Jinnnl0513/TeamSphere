@@ -1,0 +1,44 @@
+# Optional manual configuration template.
+# In most deployments, the setup wizard generates this file for you.
+# In Docker Compose, persist the generated file by setting TEAMSPHERE_CONFIG_PATH=/app/data/config.yaml.
+server:
+    port: 8080
+    mode: release
+database:
+    host: localhost
+    port: 5432
+    user: team_sphere
+    password: your_db_password
+    dbname: team_sphere
+    sslmode: disable
+    max_conns: 20
+    min_conns: 5
+redis:
+    enabled: true
+    host: localhost
+    port: 6379
+    password: ""
+    db: 0
+security:
+    # Generate with: openssl rand -hex 32
+    encryption_key: REPLACE_WITH_RANDOM_64_HEX_STRING
+    # Optional file token secret (defaults to encryption_key if empty)
+    file_token_secret: ""
+jwt:
+    # Generate with: openssl rand -hex 64
+    secret: REPLACE_WITH_RANDOM_128_HEX_STRING
+    # Access token expiry in minutes (short-lived for security)
+    access_expire_minutes: 15
+    # Refresh token expiry in days (long-lived for user convenience)
+    refresh_expire_days: 7
+websocket:
+    max_message_size: 2048
+    rate_limit: 10
+    ticket_expire_seconds: 30
+storage:
+    upload_dir: ./uploads
+    max_file_size: 5242880
+cors:
+    allowed_origins:
+        - 'http://localhost:5173'
+        - 'http://localhost:4173'

@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS room_settings (
+    id BIGSERIAL PRIMARY KEY,
+    room_id BIGINT NOT NULL UNIQUE REFERENCES rooms(id) ON DELETE CASCADE,
+    is_public BOOLEAN NOT NULL DEFAULT TRUE,
+    require_approval BOOLEAN NOT NULL DEFAULT FALSE,
+    read_only BOOLEAN NOT NULL DEFAULT FALSE,
+    archived BOOLEAN NOT NULL DEFAULT FALSE,
+    topic TEXT,
+    avatar_url TEXT,
+    slow_mode_seconds INT NOT NULL DEFAULT 0,
+    message_retention_days INT NOT NULL DEFAULT 0,
+    content_filter_mode TEXT NOT NULL DEFAULT 'off',
+    blocked_keywords TEXT[] DEFAULT NULL,
+    allowed_link_domains TEXT[] DEFAULT NULL,
+    blocked_link_domains TEXT[] DEFAULT NULL,
+    allowed_file_types TEXT[] DEFAULT NULL,
+    max_file_size_mb INT NOT NULL DEFAULT 0,
+    pin_limit INT NOT NULL DEFAULT 50,
+    notify_mode TEXT NOT NULL DEFAULT 'all',
+    notify_keywords TEXT[] DEFAULT NULL,
+    dnd_start TEXT NULL,
+    dnd_end TEXT NULL,
+    anti_spam_rate INT NOT NULL DEFAULT 0,
+    anti_spam_window_sec INT NOT NULL DEFAULT 0,
+    anti_repeat BOOLEAN NOT NULL DEFAULT FALSE,
+    stats_enabled BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_room_settings_room_id ON room_settings(room_id);
