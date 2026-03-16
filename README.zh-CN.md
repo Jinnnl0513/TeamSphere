@@ -1,6 +1,5 @@
 ﻿<img src="web/frontend/public/favicon.svg" alt="TeamSphere" width="20%" height="20%" align="center" style="display: block; margin: 0 auto;"> 
 
-
 # TeamSphere
 
 

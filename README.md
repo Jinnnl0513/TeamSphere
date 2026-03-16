@@ -1,8 +1,10 @@
-﻿# TeamSphere
+﻿<img src="web/frontend/public/favicon.svg" alt="TeamSphere" width="20%" height="20%" align="center" style="display: block; margin: 0 auto;"> 
+
+# TeamSphere
 
 Enterprise chat system for teams, offering real time rooms and direct messaging with notifications and file sharing.
 
-[中文说明](README.zh-CN.md)
+[中文](README.zh-CN.md)
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](License)
 [![Go](https://img.shields.io/badge/Go-1.25.0-00ADD8)](https://go.dev/dl/)
